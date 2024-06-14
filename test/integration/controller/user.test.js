@@ -3,7 +3,9 @@ const controller = require("../../../api/controllers/UserController");
 const { mockAsync, RESPONSE, USER, FILE } = require("../../util/");
 
 describe("UserController", () => {
-  it("Deve criar usuário com sucesso", async () => {
+  it("1Deve criar usuário com sucesso", async () => {
+
+  const uploadStub = mockAsync(sails.helpers, "upload", "url");
 
     const databaseStub = mockAsync(Users, "create", true);
     const req = {
@@ -18,11 +20,11 @@ describe("UserController", () => {
     assert.deepStrictEqual(result, { success: true });
   });
 
-  it("Deve criar usuário com sucesso", async () => {
+  it("2Deve criar usuário com sucesso", async () => {
     const findOneStub = mockAsync(Users, "findOne", USER);
     const req = {
       body: {
-        email: "",
+        email: "pedro@gmail.com",
         password: "password123",
       },
     };
